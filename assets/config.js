@@ -5,5 +5,5 @@
 //    restricted to HTTP referrers of this site's domain(s). Safe to be public when restricted.
 window.GALLERY_CONFIG = {
   folderId: "1BY0aqiiGsDptxBlScf5UTygy1KmygDSy",
-  apiKey: "",
+  apiKey: "AIzaSyC3I2wbYJAAczimTs8VYQ8lGsANLOuXmyY",
 };
