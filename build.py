@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """Generates the Alert Automotive static pages into ../alert-automotive/."""
 from pathlib import Path
+import hashlib
 
 OUT = Path(__file__).resolve().parent
+
+def v(rel):
+    """Cache-busting version from file contents."""
+    return hashlib.md5((OUT / rel).read_bytes()).hexdigest()[:8]
 
 BIZ = {
     "name": "Alert Automotive",
@@ -121,8 +126,8 @@ def footer():
   <div class="legal"><span>© <span data-year></span> Alert Automotive · Hudson, Florida</span><span>Serving Hudson, Spring Hill, Port Richey &amp; the Nature Coast</span></div>
 </div></footer>
 <a class="btn call-fab" href="tel:{BIZ["tel"]}">{ICONS["phone"].replace('<svg', '<svg width="20" height="20"')} Call {BIZ["phone"]}</a>
-<script src="/assets/config.js"></script>
-<script src="/assets/main.js" defer></script>'''
+<script src="/assets/config.js?v={v("assets/config.js")}"></script>
+<script src="/assets/main.js?v={v("assets/main.js")}" defer></script>'''
 
 
 SCHEMA = f'''<script type="application/ld+json">{{
@@ -151,7 +156,7 @@ def page(filename, title, desc, body, current=None, extra_head=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/styles.css?v={v("assets/styles.css")}">
 {SCHEMA}
 {extra_head}
 </head>
