@@ -479,3 +479,5 @@ h3 { font-family: var(--display); }
 :root { --silver: linear-gradient(180deg, #fafbfb 0%, #e4e7ea 55%, #d0d4d9 100%); }
 .brand-logo { height: 4.8rem; }
 @media (max-width: 860px) { .brand-logo { height: 3.8rem; } }
+/* Hero: brushed gunmetal with a soft shop-light glow (replaces box pattern) */
+.hero { background: radial-gradient(60rem 30rem at 75% 0%, rgba(255,255,255,.10), transparent 60%), var(--brushed), linear-gradient(180deg,#3d4148,#272a2f); }
