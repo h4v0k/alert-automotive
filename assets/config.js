@@ -4,6 +4,6 @@
 // 3) apiKey = a Google Cloud API key with ONLY the Google Drive API enabled,
 //    restricted to HTTP referrers of this site's domain(s). Safe to be public when restricted.
 window.GALLERY_CONFIG = {
-  folderId: "",
+  folderId: "1BY0aqiiGsDptxBlScf5UTygy1KmygDSy",
   apiKey: "",
 };
