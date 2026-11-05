@@ -75,9 +75,7 @@ def header(current):
     )
     return f'''<a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
-  <a class="brand" href="/" aria-label="Alert Automotive home">{LOGO}
-    <span><span class="brand-name">Alert <span>Automotive</span></span><span class="brand-sub">HUDSON · FLORIDA</span></span>
-  </a>
+  <a class="brand" href="/" aria-label="Alert Automotive home"><img class="brand-logo" src="/assets/logo-header.webp" width="152" height="120" alt="Alert Automotive"></a>
   <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
   <nav class="nav" id="site-nav" aria-label="Main">
 {links}
@@ -91,7 +89,7 @@ def footer():
     return f'''<footer class="site-footer"><div class="wrap">
   <div class="cols">
     <div>
-      <a class="brand" href="/" aria-label="Alert Automotive home">{LOGO}<span class="brand-name" style="color:#fff">Alert <span>Automotive</span></span></a>
+      <a href="/" aria-label="Alert Automotive home"><img src="/assets/logo-footer.webp" width="190" height="150" alt="Alert Automotive" loading="lazy" style="width:190px;height:auto"></a>
       <p style="margin-top:1rem">Family owned and locally operated in Hudson, FL. Quality repairs, honest service, fair prices — and 20+ years of transmission expertise. Making vehicles run great again.</p>
     </div>
     <div>
@@ -149,11 +147,12 @@ def page(filename, title, desc, body, current=None, extra_head=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
+<meta property="og:image" content="/assets/og-image.jpg">
 <meta name="theme-color" content="#111214">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Roboto+Slab:wght@600;700;800&family=Yellowtail&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&family=Roboto+Slab:wght@600;700;800&family=Yellowtail&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/styles.css?v={v("assets/styles.css")}">
 {SCHEMA}
 {extra_head}
@@ -182,7 +181,8 @@ CTA = f'''<section class="cta-band"><div class="wrap">
 
 # ---------------- HOME ----------------
 home = f'''
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="wrap hero-split">
+  <div>
   <span class="eyebrow">Family owned · Hudson, FL</span>
   <h1>Making vehicles <em>run great</em> again.</h1>
   <p class="lede">Daily drivers, brand-new vehicles, work trucks, cool classics and even your lawn mower — Alert Automotive does it all. Family owned and locally operated, with 20+ years of transmission expertise and newly doubled bays to get you back on the road faster.</p>
@@ -195,6 +195,8 @@ home = f'''
     <li>24-month / 24,000-mile warranty</li>
     <li>Free second opinions</li>
   </ul>
+  </div>
+  <img class="hero-logo" src="/assets/logo-hero.webp" width="810" height="640" alt="Alert Automotive — Quality Repairs · Service · Performance" fetchpriority="high">
 </div></section>
 
 <section data-until="2026-11-30" style="padding-bottom:0"><div class="wrap">

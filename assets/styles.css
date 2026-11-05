@@ -395,3 +395,84 @@ input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 3px rgba(158,43,37
 .cta-band { background: linear-gradient(180deg, #f3f4f6 0%, #d3d7dc 100%); }
 .site-header .wrap { flex-wrap: nowrap; }
 @media (max-width: 860px) { .site-header .wrap { flex-wrap: wrap; } .brand { flex: 1 1 auto; min-width: 0; } }
+
+/* Real logo */
+.brand-logo { height: 3.6rem; width: auto; display: block; }
+.site-header .wrap { padding-block: .35rem; }
+.hero-split { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem; align-items: center; }
+.hero-logo { width: 100%; max-width: 30rem; height: auto; justify-self: end; filter: drop-shadow(0 18px 30px rgba(0,0,0,.35)); }
+@media (max-width: 900px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-logo { order: -1; justify-self: start; max-width: 17rem; margin-bottom: -.5rem; }
+}
+@media (max-width: 860px) { .brand-logo { height: 3rem; } }
+
+/* ================= Garage / machine-shop layer ================= */
+:root {
+  --amber: #a8392b;      /* deep oxide red, pulled from the logo but darker */
+  --amber-deep: #8c2e23;
+  --gunmetal: #2f3338;
+  --checker: repeating-conic-gradient(#d9dce0 0 25%, #3a3e44 0 50%) 0 0 / 14px 14px;
+  --diamond:
+    linear-gradient(135deg, rgba(255,255,255,.07) 25%, transparent 25%) -6px 0 / 12px 12px,
+    linear-gradient(225deg, rgba(255,255,255,.07) 25%, transparent 25%) -6px 0 / 12px 12px,
+    linear-gradient(315deg, rgba(0,0,0,.18) 25%, transparent 25%) 0 0 / 12px 12px,
+    linear-gradient(45deg,  rgba(0,0,0,.18) 25%, transparent 25%) 0 0 / 12px 12px;
+  --brushed: repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px, rgba(0,0,0,.03) 3px 4px);
+}
+/* Stamped industrial headings, classic script kickers stay */
+h1, h2, legend { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; letter-spacing: .02em; font-weight: 800; }
+h1 { font-size: clamp(2.6rem, 7vw, 4.8rem); line-height: .98; }
+h2 { font-size: clamp(2rem, 4.6vw, 3rem); }
+h3 { font-family: var(--display); }
+.hero h1 em { font-style: normal; color: #d0d4da; background: linear-gradient(180deg,#ffffff 0%,#c9ced5 55%,#8f959e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Header: brushed gunmetal with checkered underline */
+.site-header { background: var(--brushed), linear-gradient(180deg,#3a3e44,#2b2e33); }
+.site-header::after { height: 6px; background: var(--checker); opacity: .55; }
+
+/* Hero: diamond plate */
+.hero { background: radial-gradient(60rem 30rem at 75% 0%, rgba(255,255,255,.10), transparent 60%), var(--diamond), linear-gradient(180deg,#3d4148,#272a2f); }
+.hero::after { height: 10px; background: var(--checker); opacity: .7; }
+
+/* Dark sections: brushed steel */
+.section-dark { background: var(--brushed), linear-gradient(180deg,#363a40,#2c2f34); }
+.section-dark .card { background: linear-gradient(180deg,#42464d,#393d43); border: 1px solid #555a62; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+
+/* Riveted steel plates for cards */
+.card, .promo, .steps li {
+  background-image:
+    radial-gradient(circle at 10px 10px, #c5c9cf 2.2px, #7d838b 2.6px, transparent 3.2px),
+    radial-gradient(circle at calc(100% - 10px) 10px, #c5c9cf 2.2px, #7d838b 2.6px, transparent 3.2px),
+    radial-gradient(circle at 10px calc(100% - 10px), #c5c9cf 2.2px, #7d838b 2.6px, transparent 3.2px),
+    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), #c5c9cf 2.2px, #7d838b 2.6px, transparent 3.2px),
+    linear-gradient(180deg,#ffffff,#f1f2f3);
+  border: 1px solid #c4c7cc;
+}
+.section-dark .card {
+  background-image:
+    radial-gradient(circle at 10px 10px, #9aa0a8 2.2px, #2a2d31 2.8px, transparent 3.4px),
+    radial-gradient(circle at calc(100% - 10px) 10px, #9aa0a8 2.2px, #2a2d31 2.8px, transparent 3.4px),
+    radial-gradient(circle at 10px calc(100% - 10px), #9aa0a8 2.2px, #2a2d31 2.8px, transparent 3.4px),
+    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), #9aa0a8 2.2px, #2a2d31 2.8px, transparent 3.4px),
+    linear-gradient(180deg,#42464d,#393d43);
+}
+.card .icon, .section-dark .card .icon, .info-list .icon { background: var(--silver); color: #2b2e33; border: 1px solid #8f959e; box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0,0,0,.25); }
+.promo { border-top: 4px solid var(--amber); }
+.promo .big { font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; font-weight: 800; font-size: clamp(2rem, 4.5vw, 2.6rem); }
+.card.feature { background: var(--diamond), linear-gradient(180deg,#3d4148,#2b2e33); border-color: #555a62; }
+
+/* Stamped metal tag badges */
+.badges li { background: var(--silver); color: #2b2e33; border: 1px solid #8f959e; box-shadow: inset 0 1px 0 #fff; font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: 1.02rem; }
+.badges li::before { color: var(--amber); }
+.special { background: var(--silver); border: 1px solid #8f959e; box-shadow: inset 0 1px 0 #fff; }
+.special .tag { background: var(--amber); }
+.special h2 { font-size: clamp(2rem, 5vw, 2.8rem); }
+
+/* CTA: brushed silver plate with checkered edge */
+.cta-band { background: var(--brushed), linear-gradient(180deg,#eef0f2,#cfd3d8); border: 0; position: relative; }
+.cta-band::before, .cta-band::after { content: ""; position: absolute; left: 0; right: 0; height: 8px; background: var(--checker); opacity: .5; }
+.cta-band::before { top: 0; } .cta-band::after { bottom: 0; }
+.site-footer { background: var(--brushed), #25282c; }
+.site-footer::before { height: 6px; background: var(--checker); opacity: .4; }
+.steps li::before { font-family: "Barlow Condensed", sans-serif; font-size: 2.6rem; }
