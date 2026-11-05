@@ -12,8 +12,8 @@ BIZ = {
     "street": "9824 Ideal Ln, Suite 103",
     "city": "Hudson, FL 34667",
     "fb": "https://www.facebook.com/AlertAutomotive",
-    # TODO: confirm with the shop — hours weren't public on Facebook
-    "hours": "Call for current hours",
+    "hours": "Mon–Fri 8 AM–5 PM · Sat–Sun closed",
+    "google": "https://share.google/eyMXdKkK0FIiKgoOZ",
 }
 MAP_Q = "9824+Ideal+Ln+Suite+103,+Hudson,+FL+34667"
 DIRECTIONS = f"https://www.google.com/maps/dir/?api=1&destination={MAP_Q}"
@@ -34,13 +34,19 @@ ICONS = {
     "pin": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
     "mail": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>',
     "family": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>',
+    "tire": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/></svg>',
+    "mower": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4l5 8M8 12h11v5H4v-5h4"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>',
+    "flag": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V3M4 3h14l-3 4 3 4H4"/></svg>',
+    "shield": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
+    "card": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>',
+    "car": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M3 12h18"/></svg>',
 }
 
 LOGO = '''<svg viewBox="0 0 48 48" aria-hidden="true">
-  <path d="M24 3 45 41H3z" fill="#ffb000"/>
-  <path d="M24 5.5 42.7 39.5H5.3z" fill="none" stroke="#111214" stroke-width="2.2"/>
-  <rect x="21.6" y="16" width="4.8" height="13" rx="2" fill="#111214"/>
-  <circle cx="24" cy="34" r="2.7" fill="#111214"/>
+  <path d="M24 3 45 41H3z" fill="#e0221b"/>
+  <path d="M24 5.5 42.7 39.5H5.3z" fill="none" stroke="#ffffff" stroke-width="2.2"/>
+  <rect x="21.6" y="16" width="4.8" height="13" rx="2" fill="#ffffff"/>
+  <circle cx="24" cy="34" r="2.7" fill="#ffffff"/>
 </svg>'''
 
 NAV = [
@@ -63,7 +69,7 @@ def header(current):
     )
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap">
-  <span>Family owned · Transmission specialists for 20+ years</span>
+  <span>Family owned · Mon–Fri 8 AM–5 PM</span>
   <span><a href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a> <a class="addr" href="{DIRECTIONS}" target="_blank" rel="noopener">· {BIZ["street"]}, Hudson</a></span>
 </div></div>
 <header class="site-header"><div class="wrap">
@@ -83,7 +89,7 @@ def footer():
   <div class="cols">
     <div>
       <a class="brand" href="/" aria-label="Alert Automotive home">{LOGO}<span class="brand-name" style="color:#fff">Alert <span>Automotive</span></span></a>
-      <p style="margin-top:1rem">A small, family-owned repair shop in Hudson, FL — specializing in transmissions for over 20 years and ready for all your automotive needs.</p>
+      <p style="margin-top:1rem">Family owned and locally operated in Hudson, FL. Quality repairs, honest service, fair prices — and 20+ years of transmission expertise. Making vehicles run great again.</p>
     </div>
     <div>
       <h4>Visit</h4>
@@ -105,12 +111,14 @@ def footer():
       <ul>
         <li><a href="/auto-repair#transmissions">Transmission repair</a></li>
         <li><a href="/auto-repair">Auto repair &amp; maintenance</a></li>
+        <li><a href="/auto-repair#classics">Classics &amp; performance</a></li>
+        <li><a href="/auto-repair#small-engines">Small engine repair</a></li>
         <li><a href="/fleet">Fleet services</a></li>
         <li><a href="/contact#schedule">Request an appointment</a></li>
       </ul>
     </div>
   </div>
-  <div class="legal"><span>© <span data-year></span> Alert Automotive · Hudson, Florida</span><span>Serving Hudson, Spring Hill, Port Richey &amp; Pasco County</span></div>
+  <div class="legal"><span>© <span data-year></span> Alert Automotive · Hudson, Florida</span><span>Serving Hudson, Spring Hill, Port Richey &amp; the Nature Coast</span></div>
 </div></footer>
 <a class="btn call-fab" href="tel:{BIZ["tel"]}">{ICONS["phone"].replace('<svg', '<svg width="20" height="20"')} Call {BIZ["phone"]}</a>
 <script src="/assets/config.js"></script>
@@ -122,7 +130,8 @@ SCHEMA = f'''<script type="application/ld+json">{{
   "name": "Alert Automotive", "telephone": "{BIZ["tel"]}", "email": "{BIZ["email"]}",
   "address": {{"@type": "PostalAddress", "streetAddress": "9824 Ideal Ln Suite 103",
     "addressLocality": "Hudson", "addressRegion": "FL", "postalCode": "34667", "addressCountry": "US"}},
-  "sameAs": ["{BIZ["fb"]}"], "areaServed": "Pasco County, FL"
+  "sameAs": ["{BIZ["fb"]}"], "areaServed": ["Hudson, FL", "Spring Hill, FL", "Pasco County, FL", "Hernando County, FL"],
+  "openingHours": "Mo-Fr 08:00-17:00", "slogan": "Making Vehicles Run Great Again"
 }}</script>'''
 
 
@@ -172,71 +181,97 @@ CTA = f'''<section class="cta-band"><div class="wrap">
 home = f'''
 <section class="hero"><div class="wrap">
   <span class="eyebrow">Family owned · Hudson, FL</span>
-  <h1>Transmission <em>specialists.</em> Full-service repair.</h1>
-  <p class="lede">Alert Automotive is a small, family-owned shop that's been rebuilding and repairing transmissions for over 20 years — and we're here for everything else your car, truck, or company fleet needs.</p>
+  <h1>Making vehicles <em>run great</em> again.</h1>
+  <p class="lede">Daily drivers, brand-new vehicles, work trucks, cool classics and even your lawn mower — Alert Automotive does it all. Family owned and locally operated, with 20+ years of transmission expertise and newly doubled bays to get you back on the road faster.</p>
   <div class="btn-row">
     <a class="btn" href="/contact#schedule">Request an Appointment</a>
     <a class="btn ghost" href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a>
   </div>
   <ul class="trust">
-    <li>20+ years of transmission work</li>
-    <li>Family owned &amp; operated</li>
-    <li>100% recommended on Facebook</li>
+    <li>5.0★ on Google · 160+ reviews</li>
+    <li>24-month / 24,000-mile warranty</li>
+    <li>Free second opinions</li>
   </ul>
+</div></section>
+
+<section data-until="2026-11-30" style="padding-bottom:0"><div class="wrap">
+  <div class="special">
+    <div>
+      <span class="tag">November special · through Nov 30</span>
+      <h2 style="margin:0">Brake special</h2>
+      <p style="margin:.3rem 0 0">Pads &amp; hardware, <strong>labor included</strong>. Applies to most vehicles; additional parts and labor may be required.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1rem">
+      <span class="price">$149.99</span>
+      <a class="btn" href="/contact#schedule">Book brakes</a>
+    </div>
+  </div>
 </div></section>
 
 <section><div class="wrap">
   <div class="section-head">
-    <span class="kicker">What we do</span>
-    <h2>Two ways we keep you moving</h2>
+    <span class="kicker">Big or small, we do it all</span>
+    <h2>What we work on</h2>
   </div>
-  <div class="split-band">
-    <div class="a">
-      <h3>Personal vehicles</h3>
-      <p>Cars, trucks, SUVs and vans. Transmission diagnosis and rebuilds, check-engine lights, brakes, A/C, and the routine maintenance that keeps small problems small.</p>
-      <a class="btn dark" href="/auto-repair">Auto repair services →</a>
-    </div>
-    <div class="b">
-      <h3>Fleet vehicles</h3>
-      <p>Work trucks and company vehicles earn money only when they're running. We help local businesses keep fleets on the road with scheduled maintenance and straight answers.</p>
-      <a class="btn" href="/fleet">Fleet services →</a>
-    </div>
+  <div class="grid">
+    {card("car", "Daily drivers &amp; new vehicles", "Foreign and domestic cars, SUVs and minivans — routine maintenance to full engine overhauls.")}
+    {card("truck", "Trucks &amp; fleets", "Work trucks and company vehicles kept on the road, plus upfitting: wheels, tires, lighting, bumpers and canopies.")}
+    {card("flag", "Classics &amp; custom", "Classic cars are our passion — restoration and repair, performance upgrades and custom modifications.")}
+    {card("mower", "Small engines", "Lawn mowers, generators, chainsaws and trimmers — tune-ups, carb cleaning, fuel systems and more.")}
   </div>
 </div></section>
 
 <section class="section-dark"><div class="wrap">
   <div class="section-head">
-    <span class="kicker">Our shop</span>
+    <span class="kicker">Full service</span>
     <h2>Most-requested services</h2>
-    <p>Not sure what's wrong? Describe what you're hearing, feeling, or seeing and we'll diagnose it before we fix anything.</p>
+    <p>Not sure what's wrong? Tell us what you're hearing, feeling or seeing — we diagnose it before we fix anything.</p>
   </div>
   <div class="grid">
-    {card("gear", "Transmissions", "Our specialty. Slipping, hard shifts, delayed engagement, leaks, or no-go — repair, rebuild, or replacement, explained clearly.")}
-    {card("scan", "Diagnostics", "Check-engine and warning lights, drivability issues, and electrical gremlins traced to the real cause.")}
-    {card("brake", "Brakes", "Pads, rotors, calipers, lines, and ABS issues — so you stop straight and quiet.")}
-    {card("snow", "A/C &amp; Cooling", "Florida-proof A/C service and repair, plus radiators, water pumps, and overheating fixes.")}
+    {card("gear", "Transmission service", "20+ years of transmission work — diagnosis, repair, rebuilds and replacements.")}
+    {card("engine", "Engine repair", "From misfires and leaks to full engine overhauls.")}
+    {card("brake", "Brakes &amp; safety", "Pads, rotors, calipers, lines and ABS so you stop straight and quiet.")}
+    {card("tire", "Tire sales", "Now offering Cosmo tires — all-season, all-terrain and mud-terrain options.")}
+    {card("drop", "Oil changes &amp; maintenance", "Preventative maintenance that keeps your vehicle running longer.")}
+    {card("snow", "A/C &amp; heating", "Florida-proof A/C service and repair.")}
+    {card("bolt", "Electrical diagnostics", "Warning lights, batteries, charging and wiring traced to the real cause.")}
+    {card("mower", "Small engine repair", "Mowers, generators and outdoor equipment tuned up and running strong.")}
   </div>
   <p style="margin-top:2rem"><a class="btn" href="/auto-repair">See all services</a></p>
 </div></section>
 
 <section><div class="wrap">
+  <div class="section-head"><span class="kicker">Peace of mind</span><h2>Why drivers choose Alert</h2></div>
+  <div class="promo-grid">
+    <div class="promo"><span class="big">Free 2nd opinion</span><p>Got an estimate somewhere else? Bring it in and get a free second opinion from our certified shop.</p><a class="btn dark" href="/contact#schedule">Get a second opinion</a></div>
+    <div class="promo"><span class="big">24 mo / 24K mi</span><p>Our repairs are backed by a 24-month / 24,000-mile warranty. We stand behind our work.</p></div>
+    <div class="promo"><span class="big">6 months financing</span><p>Promotional financing on purchases of $199 or more with the Synchrony Car Care™ credit card.</p><small>Subject to credit approval. Minimum monthly payments required. See store for details.</small></div>
+  </div>
+</div></section>
+
+<section class="section-dark"><div class="wrap">
   <div class="grid two">
     <div>
-      <span class="kicker">Why Alert</span>
-      <h2>Small shop. Straight answers.</h2>
-      <p>We're a family business, not a chain. You talk to the people working on your vehicle, you get an honest explanation of what it needs, and nothing gets done without your OK.</p>
+      <span class="kicker">Locally owned &amp; operated</span>
+      <h2>Bigger shop. Same family.</h2>
+      <p>We just doubled our bays — more room and faster turnaround. What hasn't changed is how we treat people: like family, with honest recommendations and no surprises.</p>
       <ul class="ticks">
-        <li>Two decades of transmission experience</li>
-        <li>We explain the problem and the options before any work starts</li>
-        <li>Personal vehicles and commercial fleets</li>
-        <li>Proudly serving Hudson and the surrounding Pasco County community</li>
+        <li>Experienced, skilled technicians</li>
+        <li>All makes &amp; models — foreign, domestic, trucks, SUVs</li>
+        <li>Quality parts and state-of-the-art diagnostic equipment</li>
+        <li>Fair, honest pricing — nothing done without your OK</li>
       </ul>
-      <a class="review-pill" href="{BIZ["fb"]}/reviews" target="_blank" rel="noopener"><strong>100%</strong> recommend us on Facebook · read the reviews →</a>
+      <ul class="badges">
+        <li>CARFAX 2025 Top-Rated Service Center</li>
+        <li>BusinessRate Best of 2026</li>
+        <li>2026 Best of Florida Regional Winner</li>
+      </ul>
+      <p style="margin-top:1.4rem"><a class="btn" href="{BIZ["google"]}" target="_blank" rel="noopener">Read our Google reviews</a></p>
     </div>
     <div>
       <span class="kicker">How it works</span>
       <h2>Getting your vehicle in</h2>
-      <ol class="steps">
+      <ol class="steps" style="color:var(--ink)">
         <li><strong>Request a time</strong>Pick a preferred day online or give us a call.</li>
         <li><strong>We confirm</strong>We'll call or text to lock in your drop-off.</li>
         <li><strong>Diagnose &amp; approve</strong>You get a clear explanation and estimate first.</li>
@@ -245,7 +280,7 @@ home = f'''
   </div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
+<section><div class="wrap">
   <div class="section-head" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;max-width:none">
     <div><span class="kicker">From the shop</span><h2 style="margin:0">Recent work</h2></div>
     <a class="btn dark" href="/gallery">View the gallery</a>
@@ -255,25 +290,25 @@ home = f'''
 
 {CTA}
 '''
-page("index.html", "Alert Automotive | Transmission & Auto Repair in Hudson, FL",
-     "Family-owned auto repair shop in Hudson, FL specializing in transmissions for over 20 years. Car, truck and fleet service. Call (352) 515-3660.",
+page("index.html", "Alert Automotive | Auto Repair in Hudson, FL — Making Vehicles Run Great Again",
+     "Family-owned auto repair in Hudson, FL: transmissions, engine, brakes, tires, A/C, classics, fleets and small engines. 5.0★ on Google. Free second opinions. Call (352) 515-3660.",
      home)
 
 # ---------------- AUTO REPAIR ----------------
 repair = f'''
 <section class="hero small"><div class="wrap">
   <span class="eyebrow">Consumer auto repair</span>
-  <h1>Repair &amp; maintenance for the vehicle you count on</h1>
-  <p class="lede">From a slipping transmission to a squealing brake, we diagnose it right, explain it plainly, and fix it once.</p>
+  <h1>Big or small, we do it all</h1>
+  <p class="lede">Everyday repairs and maintenance, transmissions, tires, classics, custom work and small engines — all makes and models, foreign and domestic.</p>
   <div class="btn-row"><a class="btn" href="/contact#schedule">Request an Appointment</a><a class="btn ghost" href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a></div>
 </div></section>
 
 <section id="transmissions"><div class="wrap">
   <div class="grid two">
     <div>
-      <span class="kicker">Our specialty</span>
+      <span class="kicker">20+ years of experience</span>
       <h2>Transmission repair &amp; rebuilds</h2>
-      <p>Transmissions have been our focus for over 20 years. Before you're told you need a replacement, let us take a look — sometimes the fix is a sensor, a solenoid, a leak, or a software issue rather than the whole unit.</p>
+      <p>We've been working on transmissions for over 20 years. Before you're told you need a replacement, let us take a look — sometimes the fix is a sensor, a solenoid, a leak, or a software issue rather than the whole unit.</p>
       <ul class="ticks">
         <li>Automatic and manual transmission diagnosis</li>
         <li>Rebuilds, repairs, and replacement units</li>
@@ -283,7 +318,7 @@ repair = f'''
       </ul>
       <a class="btn" href="/contact#schedule">Get it checked</a>
     </div>
-    <div class="card feature">
+    <div class="card feature" data-badge="20+ YEARS">
       <h3>Signs your transmission needs attention</h3>
       <ul class="ticks">
         <li>Engine revs but the vehicle doesn't accelerate</li>
@@ -307,7 +342,45 @@ repair = f'''
     {card("drop", "Cooling system", "Radiators, hoses, water pumps, thermostats and overheating.")}
     {card("susp", "Suspension &amp; steering", "Shocks, struts, ball joints, tie rods, and that clunk over bumps.")}
     {card("bolt", "Electrical", "Batteries, alternators, starters, wiring and lighting.")}
-    {card("clip", "Scheduled maintenance", "Oil changes, fluids, belts, filters and inspections to factory schedule.")}
+    {card("clip", "Oil changes &amp; maintenance", "Oil changes, fluids, belts, filters and preventative maintenance.")}
+    {card("tire", "Tire sales &amp; service", "Now offering Cosmo tires — all-season, all-terrain and mud-terrain, mounted and balanced.")}
+  </div>
+</div></section>
+
+<section id="classics"><div class="wrap">
+  <div class="grid two">
+    <div>
+      <span class="kicker">We love classics</span>
+      <h2>Classics, performance &amp; custom</h2>
+      <p>Classic cars are our passion. Whether you're bringing a classic back to life or building something completely custom, we're ready to get to work.</p>
+      <ul class="ticks">
+        <li>Classic car restoration &amp; repair</li>
+        <li>Performance upgrades</li>
+        <li>Custom modifications</li>
+        <li>Upfitting — wheels, tires, lighting, bumpers &amp; canopies</li>
+      </ul>
+      <a class="btn" href="/contact#schedule">Talk about your build</a>
+    </div>
+    <div id="small-engines" class="card feature">
+      <h3>Small engine repair &amp; maintenance</h3>
+      <p>Mowers, generators, chainsaws, trimmers and more — don't wait until your equipment leaves you stranded.</p>
+      <ul class="ticks">
+        <li>Tune-ups &amp; oil changes</li>
+        <li>Spark plug replacement</li>
+        <li>Carburetor cleaning &amp; repair</li>
+        <li>Fuel system service</li>
+        <li>Lawn mower blade sharpening</li>
+        <li>Seasonal maintenance</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="section-dark"><div class="wrap">
+  <div class="promo-grid" style="color:var(--ink)">
+    <div class="promo"><span class="big">Free 2nd opinion</span><p>Received an estimate elsewhere? Bring it in for a free second opinion.</p></div>
+    <div class="promo"><span class="big">24 mo / 24K mi</span><p>Warranty on our repairs.</p></div>
+    <div class="promo"><span class="big">Financing</span><p>6 months promotional financing on $199+ with the Synchrony Car Care™ credit card.</p><small>Subject to credit approval. Minimum monthly payments required. See store for details.</small></div>
   </div>
 </div></section>
 
@@ -324,7 +397,7 @@ repair = f'''
 {CTA}
 '''
 page("auto-repair.html", "Auto & Transmission Repair in Hudson, FL | Alert Automotive",
-     "Transmission repair and rebuilds, diagnostics, brakes, A/C, engine and electrical repair in Hudson, FL. Family-owned Alert Automotive.",
+     "Transmission, engine, brake, tire, A/C and electrical repair, classic car restoration, performance upgrades and small engine repair in Hudson, FL.",
      repair)
 
 # ---------------- FLEET ----------------
@@ -344,7 +417,8 @@ fleet = f'''
     {card("gear", "Drivetrain expertise", "Twenty years of transmission work — the part that takes a hard-working vehicle off the road.")}
     {card("truck", "Mixed fleets welcome", "Pickups, service vans, SUVs and company cars — one shop for the whole lineup.")}
     {card("scan", "Clear reporting", "Straightforward estimates and service records for every vehicle.")}
-    {card("family", "One point of contact", "A family shop that knows your vehicles and your business by name.")}
+    {card("tire", "Tires &amp; upfitting", "Cosmo tires plus wheels, lighting, bumpers and canopies to get work trucks job-ready.")}
+    {card("shield", "24 mo / 24K mi warranty", "Repairs backed by our 24-month / 24,000-mile warranty.")}
   </div>
 </div></section>
 
@@ -357,7 +431,7 @@ fleet = f'''
       <ul class="ticks">
         <li>Contractors &amp; trades</li>
         <li>Delivery and service vans</li>
-        <li>Landscaping, pool &amp; pest control</li>
+        <li>Landscaping, tree service, pool &amp; pest control — including your mowers and outdoor equipment</li>
         <li>Real estate, sales &amp; company cars</li>
         <li>Municipal and nonprofit vehicles</li>
       </ul>
@@ -416,9 +490,9 @@ page("gallery.html", "Photo Gallery | Alert Automotive, Hudson FL",
 def chk(name, value):
     return f'<label class="choice"><input type="checkbox" name="{name}" value="{value}"> {value}</label>'
 
-services = ["Transmission problem", "Check-engine / warning light", "Brakes", "A/C or heating",
-            "Oil change / maintenance", "Engine / overheating", "Suspension / steering", "Electrical / battery",
-            "Second opinion / estimate", "Something else"]
+services = ["Transmission problem", "Check-engine / warning light", "Brakes", "Tires",
+            "A/C or heating", "Oil change / maintenance", "Engine / overheating", "Electrical / battery",
+            "Classic / performance / custom", "Small engine (mower, generator…)", "Free second opinion", "Something else"]
 
 contact = f'''
 <section class="hero small"><div class="wrap">
@@ -430,7 +504,7 @@ contact = f'''
 <section id="schedule"><div class="wrap">
   <div class="grid two">
     <div class="form-card">
-      <div class="form-note"><strong>This is a request, not a confirmed booking.</strong> We'll reach out to confirm your time. Need it today? Call <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a>.</div>
+      <div class="form-note"><strong>This is a request, not a confirmed booking.</strong> Have an estimate from another shop? Choose "Free second opinion" below. We'll reach out to confirm your time. Need it today? Call <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a>.</div>
       <form name="appointment-request" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" data-ajax>
         <input type="hidden" name="form-name" value="appointment-request">
         <input type="hidden" name="subject" value="New appointment request — Alert Automotive website">
@@ -493,7 +567,7 @@ contact = f'''
         <li><span class="icon">{ICONS["pin"]}</span><div><strong>Address</strong><a href="{DIRECTIONS}" target="_blank" rel="noopener">{BIZ["street"]}<br>{BIZ["city"]}</a></div></li>
         <li><span class="icon">{ICONS["phone"]}</span><div><strong>Phone</strong><a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a></div></li>
         <li><span class="icon">{ICONS["mail"]}</span><div><strong>Email</strong><a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a></div></li>
-        <li><span class="icon">{ICONS["clock"]}</span><div><strong>Hours</strong>{BIZ["hours"]}</div></li>
+        <li><span class="icon">{ICONS["clock"]}</span><div><strong>Hours</strong><table class="hours"><tr><td>Monday–Friday</td><td>8 AM – 5 PM</td></tr><tr><td>Saturday–Sunday</td><td>Closed</td></tr></table></div></li>
       </ul>
       <iframe class="map" title="Map to Alert Automotive" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps?q={MAP_Q}&output=embed"></iframe>

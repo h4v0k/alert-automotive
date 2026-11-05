@@ -13,6 +13,12 @@
 
   document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
+  // Hide time-limited promos after their end date (local time, end of day)
+  document.querySelectorAll("[data-until]").forEach((el) => {
+    const end = new Date(el.dataset.until + "T23:59:59");
+    if (new Date() > end) el.remove();
+  });
+
   // Dates can't be in the past
   const d = new Date();
   const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
