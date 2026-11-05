@@ -48,10 +48,11 @@ ICONS = {
 }
 
 LOGO = '''<svg viewBox="0 0 48 48" aria-hidden="true">
-  <path d="M24 3 45 41H3z" fill="#e0221b"/>
-  <path d="M24 5.5 42.7 39.5H5.3z" fill="none" stroke="#ffffff" stroke-width="2.2"/>
-  <rect x="21.6" y="16" width="4.8" height="13" rx="2" fill="#ffffff"/>
-  <circle cx="24" cy="34" r="2.7" fill="#ffffff"/>
+  <defs><linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".45" stop-color="#b9bec6"/><stop offset=".55" stop-color="#8d939c"/><stop offset="1" stop-color="#d7dadf"/></linearGradient></defs>
+  <path d="M24 3 45 41H3z" fill="url(#chrome)"/>
+  <path d="M24 7.5 41 38.5H7z" fill="none" stroke="#9e2b25" stroke-width="1.6"/>
+  <rect x="21.7" y="16" width="4.6" height="13" rx="2" fill="#2b2e33"/>
+  <circle cx="24" cy="34" r="2.6" fill="#2b2e33"/>
 </svg>'''
 
 NAV = [
@@ -73,10 +74,6 @@ def header(current):
         for p, label in NAV
     )
     return f'''<a class="skip" href="#main">Skip to content</a>
-<div class="topbar"><div class="wrap">
-  <span>Family owned · Mon–Fri 8 AM–5 PM</span>
-  <span><a href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a> <a class="addr" href="{DIRECTIONS}" target="_blank" rel="noopener">· {BIZ["street"]}, Hudson</a></span>
-</div></div>
 <header class="site-header"><div class="wrap">
   <a class="brand" href="/" aria-label="Alert Automotive home">{LOGO}
     <span><span class="brand-name">Alert <span>Automotive</span></span><span class="brand-sub">HUDSON · FLORIDA</span></span>
@@ -84,6 +81,7 @@ def header(current):
   <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
   <nav class="nav" id="site-nav" aria-label="Main">
 {links}
+    <a class="nav-phone" href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a>
     <a class="btn" href="/contact#schedule">Schedule Service</a>
   </nav>
 </div></header>'''
@@ -155,7 +153,7 @@ def page(filename, title, desc, body, current=None, extra_head=""):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Roboto+Slab:wght@600;700;800&family=Yellowtail&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/styles.css?v={v("assets/styles.css")}">
 {SCHEMA}
 {extra_head}
@@ -179,7 +177,7 @@ def card(icon, title, text, cls="card", anchor=None):
 
 CTA = f'''<section class="cta-band"><div class="wrap">
   <h2>Warning light on?<br>Let's take a look.</h2>
-  <div class="btn-row"><a class="btn dark" href="/contact#schedule">Request an Appointment</a><a class="btn dark" href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a></div>
+  <div class="btn-row"><a class="btn" href="/contact#schedule">Request an Appointment</a><a class="btn dark" href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a></div>
 </div></section>'''
 
 # ---------------- HOME ----------------

@@ -1,6 +1,7 @@
 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <path d="M24 3 45 41H3z" fill="#e0221b"/>
-  <path d="M24 5.5 42.7 39.5H5.3z" fill="none" stroke="#ffffff" stroke-width="2.2"/>
-  <rect x="21.6" y="16" width="4.8" height="13" rx="2" fill="#ffffff"/>
-  <circle cx="24" cy="34" r="2.7" fill="#ffffff"/>
+  <defs><linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".45" stop-color="#b9bec6"/><stop offset=".55" stop-color="#8d939c"/><stop offset="1" stop-color="#d7dadf"/></linearGradient></defs>
+  <path d="M24 3 45 41H3z" fill="url(#chrome)"/>
+  <path d="M24 7.5 41 38.5H7z" fill="none" stroke="#9e2b25" stroke-width="1.6"/>
+  <rect x="21.7" y="16" width="4.6" height="13" rx="2" fill="#2b2e33"/>
+  <circle cx="24" cy="34" r="2.6" fill="#2b2e33"/>
 </svg>
