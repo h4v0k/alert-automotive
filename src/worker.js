@@ -57,7 +57,6 @@ export function buildMessage({ from, to, replyTo, subject, text }) {
     replyTo ? `Reply-To: ${replyTo}` : null,
     `Subject: ${encHeader(oneLine(subject))}`,
     `Date: ${new Date().toUTCString()}`,
-    `Message-ID: <${Date.now()}.${Math.random().toString(36).slice(2)}@alertautomotivefl.com>`,
     "MIME-Version: 1.0",
     "Content-Type: text/plain; charset=UTF-8",
     "Content-Transfer-Encoding: base64",
