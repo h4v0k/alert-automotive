@@ -517,3 +517,5 @@ iframe.map { display: block; }
 /* Light cards inside dark sections keep dark text */
 .section-dark .promo p, .section-dark .promo small, .section-dark .form-card p, .section-dark .form-card .hint { color: #3a3f46; }
 .section-dark .form-card a { color: #2b2e33; }
+/* Feature card: brushed gunmetal instead of the box pattern */
+.card.feature { background: var(--brushed), linear-gradient(180deg,#3d4148,#2b2e33); }
