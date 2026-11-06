@@ -130,7 +130,7 @@ def footer():
       </ul>
     </div>
   </div>
-  <div class="legal"><span>© <span data-year></span> Alert Automotive · Hudson, Florida</span><span><a href="/privacy">Privacy policy</a> · <a href="/accessibility">Accessibility</a></span><span>Serving Hudson, Spring Hill, Port Richey &amp; the Nature Coast</span></div>
+  <div class="legal"><span>© <span data-year></span> Alert Automotive · Hudson, Florida</span><span><a href="/privacy">Privacy policy</a> · <a href="/accessibility">Accessibility</a></span><span>Serving Hudson, Spring Hill, Port Richey &amp; the Nature Coast</span><span>Site built by Skill Capture Media · <a href="mailto:mike@skillcapturemedia.com">mike@skillcapturemedia.com</a></span></div>
 </div></footer>
 <a class="btn call-fab" href="tel:{BIZ["tel"]}">{ICONS["phone"].replace('<svg', '<svg width="20" height="20"')} Call {BIZ["phone"]}</a>
 <script src="/assets/config.js?v={v("assets/config.js")}"></script>
