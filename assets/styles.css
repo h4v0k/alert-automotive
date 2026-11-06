@@ -498,3 +498,22 @@ h3 { font-family: var(--display); }
 .hero-logo { order: -1; justify-self: start; max-width: 24rem; margin-bottom: 0; }
 .hero .wrap.hero-split { padding-top: clamp(1.25rem, 3vw, 2.5rem); }
 .hero h1 { max-width: none; }
+
+/* Audit additions */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.site-footer .f-h { font-family: var(--display); text-transform: none; letter-spacing: 0; color: #fff; font-size: 1.15rem; margin-bottom: .7rem; }
+.site-footer .legal a { color: #c9cdd3; text-decoration: underline; }
+.profiles { display: flex !important; flex-wrap: wrap; gap: .4rem .9rem !important; }
+.radio-group { margin: 0; }
+.sub-legend { font: 600 1rem var(--body) !important; text-transform: none !important; letter-spacing: 0 !important; margin-bottom: .3rem !important; }
+.consent { margin: .2rem 0 1rem; }
+.prose { max-width: 46rem; }
+.prose h2 { font-size: clamp(1.5rem, 3vw, 1.9rem); margin-top: 1.8rem; }
+.map-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; text-align: center; padding: 1.5rem;
+  background: var(--brushed), linear-gradient(180deg,#e9ebee,#d3d7dc); color: #2b2e33; border: 1px solid #b4b9c0; }
+.map-placeholder .hint { margin: 0; }
+iframe.map { display: block; }
+.map-placeholder .hint { color: #3a3f46; }
+/* Light cards inside dark sections keep dark text */
+.section-dark .promo p, .section-dark .promo small, .section-dark .form-card p, .section-dark .form-card .hint { color: #3a3f46; }
+.section-dark .form-card a { color: #2b2e33; }

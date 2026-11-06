@@ -13,6 +13,31 @@
 
   document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
+  // Links that open a new tab: tell screen-reader users
+  document.querySelectorAll('a[target="_blank"]').forEach((a) => {
+    if (a.querySelector(".sr-only")) return;
+    const sr = document.createElement("span");
+    sr.className = "sr-only";
+    sr.textContent = " (opens in a new tab)";
+    a.appendChild(sr);
+  });
+
+  // Google Maps loads only when the visitor asks (no third-party cookies before that)
+  document.querySelectorAll("[data-load-map]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const box = btn.closest("[data-map-src]");
+      const f = document.createElement("iframe");
+      f.className = "map";
+      if (box.id) f.id = box.id;
+      f.title = "Google map showing Alert Automotive, 9824 Ideal Ln, Suite 103, Hudson, FL";
+      f.src = box.dataset.mapSrc;
+      f.referrerPolicy = "no-referrer-when-downgrade";
+      f.setAttribute("allowfullscreen", "");
+      box.replaceWith(f);
+      f.focus();
+    });
+  });
+
   // Hide time-limited promos after their end date (local time, end of day)
   document.querySelectorAll("[data-until]").forEach((el) => {
     const end = new Date(el.dataset.until + "T23:59:59");

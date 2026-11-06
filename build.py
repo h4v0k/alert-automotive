@@ -17,6 +17,8 @@ BIZ = {
     "street": "9824 Ideal Ln, Suite 103",
     "city": "Hudson, FL 34667",
     "fb": "https://www.facebook.com/AlertAutomotive",
+    "yelp": "https://www.yelp.com/biz/alert-automotive-hudson",
+    "carfax": "https://www.carfax.com/Reviews-Alert-Automotive-Hudson-FL_8CHPE3YWSJ",
     "hours": "Mon–Fri 8 AM–5 PM · Sat–Sun closed",
     "google": "https://share.google/eyMXdKkK0FIiKgoOZ",
 }
@@ -24,7 +26,7 @@ SITE = "https://alertautomotivefl.com"
 KOALAFI = "https://qr.koalafi.com/54a4b186-d734-43bd-967f-7b90392964d5"
 AFF = "https://americanfirstfinance.com/app/?dealer=28781&loc=1&src=UA"
 MAP_Q = "9824+Ideal+Ln+Suite+103,+Hudson,+FL+34667"
-DIRECTIONS = f"https://www.google.com/maps/dir/?api=1&destination={MAP_Q}"
+DIRECTIONS = f"https://www.google.com/maps/dir/?api=1&destination=Alert+Automotive,+{MAP_Q}"
 
 ICONS = {
     "gear": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
@@ -96,22 +98,28 @@ def footer():
       <p style="margin-top:1rem">Family owned and locally operated in Hudson, FL. Quality repairs, honest service, fair prices — and 20+ years of transmission expertise. Making vehicles run great again.</p>
     </div>
     <div>
-      <h4>Visit</h4>
+      <h2 class="f-h">Visit</h2>
       <ul>
         <li><a href="{DIRECTIONS}" target="_blank" rel="noopener">{BIZ["street"]}<br>{BIZ["city"]}</a></li>
         <li>{BIZ["hours"]}</li>
       </ul>
     </div>
     <div>
-      <h4>Contact</h4>
+      <h2 class="f-h">Contact</h2>
       <ul>
         <li><a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a></li>
         <li><a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a></li>
+      </ul>
+      <h2 class="f-h" style="margin-top:1.2rem">Find us on</h2>
+      <ul class="profiles">
+        <li><a href="{BIZ["google"]}" target="_blank" rel="noopener">Google</a></li>
         <li><a href="{BIZ["fb"]}" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="{BIZ["yelp"]}" target="_blank" rel="noopener">Yelp</a></li>
+        <li><a href="{BIZ["carfax"]}" target="_blank" rel="noopener">Carfax</a></li>
       </ul>
     </div>
     <div>
-      <h4>Services</h4>
+      <h2 class="f-h">Services</h2>
       <ul>
         <li><a href="/auto-repair#transmissions">Transmission repair</a></li>
         <li><a href="/auto-repair">Auto repair &amp; maintenance</a></li>
@@ -122,7 +130,7 @@ def footer():
       </ul>
     </div>
   </div>
-  <div class="legal"><span>© <span data-year></span> Alert Automotive · Hudson, Florida</span><span>Serving Hudson, Spring Hill, Port Richey &amp; the Nature Coast</span></div>
+  <div class="legal"><span>© <span data-year></span> Alert Automotive · Hudson, Florida</span><span><a href="/privacy">Privacy policy</a> · <a href="/accessibility">Accessibility</a></span><span>Serving Hudson, Spring Hill, Port Richey &amp; the Nature Coast</span></div>
 </div></footer>
 <a class="btn call-fab" href="tel:{BIZ["tel"]}">{ICONS["phone"].replace('<svg', '<svg width="20" height="20"')} Call {BIZ["phone"]}</a>
 <script src="/assets/config.js?v={v("assets/config.js")}"></script>
@@ -130,12 +138,17 @@ def footer():
 
 
 SCHEMA = f'''<script type="application/ld+json">{{
-  "@context": "https://schema.org", "@type": "AutoRepair",
-  "name": "Alert Automotive", "telephone": "{BIZ["tel"]}", "email": "{BIZ["email"]}",
+  "@context": "https://schema.org", "@type": "AutoRepair", "@id": "{SITE}/#business",
+  "name": "Alert Automotive", "url": "{SITE}/", "logo": "{SITE}/assets/logo-footer.webp", "image": "{SITE}/assets/og-image.jpg",
+  "telephone": "+1-352-515-3660", "email": "{BIZ["email"]}",
+  "description": "Family-owned auto repair in Hudson, FL: transmissions, engine, brakes, tires, A/C, electrical, classic cars, fleets and small engines.",
   "address": {{"@type": "PostalAddress", "streetAddress": "9824 Ideal Ln Suite 103",
     "addressLocality": "Hudson", "addressRegion": "FL", "postalCode": "34667", "addressCountry": "US"}},
-  "sameAs": ["{BIZ["fb"]}"], "areaServed": ["Hudson, FL", "Spring Hill, FL", "Pasco County, FL", "Hernando County, FL"],
-  "openingHours": "Mo-Fr 08:00-17:00", "slogan": "Making Vehicles Run Great Again"
+  "openingHoursSpecification": [{{"@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00"}}],
+  "sameAs": ["{BIZ["fb"]}", "{BIZ["yelp"]}", "{BIZ["carfax"]}"],
+  "areaServed": ["Hudson, FL", "Spring Hill, FL", "Port Richey, FL", "Pasco County, FL", "Hernando County, FL"],
+  "paymentAccepted": "Cash, Credit Card, Financing", "slogan": "Making Vehicles Run Great Again"
 }}</script>'''
 
 
@@ -151,7 +164,7 @@ def page(filename, title, desc, body, current=None, extra_head=""):
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="{SITE}/assets/og-image.jpg">\n<meta property="og:url" content="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">\n<link rel="canonical" href="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">
-<meta name="theme-color" content="#111214">
+<meta name="theme-color" content="#2b2e33">{'<meta name="robots" content="noindex">' if filename in ("thank-you.html","404.html") else ""}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,6 +194,15 @@ CTA = f'''<section class="cta-band"><div class="wrap">
   <h2>Warning light on?<br>Let's take a look.</h2>
   <div class="btn-row"><a class="btn" href="/contact#schedule">Request an Appointment</a><a class="btn dark" href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a></div>
 </div></section>'''
+
+def MAP_EMBED(id_=""):
+    idattr = f' id="{id_}"' if id_ else ""
+    return f'''<div class="map map-placeholder"{idattr} data-map-src="https://www.google.com/maps?q=Alert+Automotive,+{MAP_Q}&output=embed">
+      <p><strong>Map of 9824 Ideal Ln, Suite 103, Hudson</strong></p>
+      <button type="button" class="btn silver" data-load-map>Show map</button>
+      <p class="hint">Loads Google Maps, which may set Google cookies.</p>
+      <a href="{DIRECTIONS}" target="_blank" rel="noopener">Open in Google Maps</a>
+    </div>'''
 
 FIN_BUTTONS = f'''<div class="btn-row fin-btns">
   <a class="btn" href="{KOALAFI}" target="_blank" rel="noopener">Apply with Koalafi</a>
@@ -216,8 +238,7 @@ VISIT = f'''<section id="visit"><div class="wrap">
       </ul>
       <a class="btn" href="{DIRECTIONS}" target="_blank" rel="noopener">Get directions</a>
     </div>
-    <iframe class="map" title="Map to Alert Automotive" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps?q={MAP_Q}&output=embed"></iframe>
+    {MAP_EMBED()}
   </div>
 </div></section>'''
 
@@ -507,6 +528,7 @@ fleet = f'''
             <div class="full"><label for="f-msg">What do you need?</label><textarea id="f-msg" name="message" placeholder="Maintenance plan, a specific repair, billing setup…"></textarea></div>
           </div>
         </fieldset>
+        <p class="hint consent">By sending this, you agree Alert Automotive may contact you by phone, text or email about your request. Message and data rates may apply. We never sell your information — see our <a href="/privacy">privacy policy</a>.</p>
         <button class="btn" type="submit">Send fleet inquiry</button>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
@@ -558,6 +580,7 @@ contact = f'''
 <section id="schedule"><div class="wrap">
   <div class="grid two">
     <div class="form-card">
+      <p class="hint" style="margin-top:0">Fields marked <span class="req" aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.</p>
       <div class="form-note"><strong>This is a request, not a confirmed booking.</strong> Have an estimate from another shop? Choose "Free second opinion" below. We'll reach out to confirm your time. Need it today? Call <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a>.</div>
       <form name="appointment-request" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" data-ajax>
         <input type="hidden" name="form-name" value="appointment-request">
@@ -572,11 +595,11 @@ contact = f'''
             <div><label for="c-email">Email</label><input id="c-email" type="email" name="email" autocomplete="email"></div>
             <div><label for="c-contact">Best way to reach you</label>
               <select id="c-contact" name="contact_method"><option>Call</option><option>Text</option><option>Email</option></select></div>
-            <div class="full"><label>This vehicle is…</label>
+            <fieldset class="full radio-group"><legend class="sub-legend">This vehicle is…</legend>
               <div class="choices">
                 <label class="choice"><input type="radio" name="customer_type" value="Personal vehicle" checked> Personal vehicle</label>
                 <label class="choice"><input type="radio" name="customer_type" value="Fleet / business vehicle"> Fleet / business vehicle</label>
-              </div></div>
+              </div></fieldset>
           </div>
         </fieldset>
 
@@ -609,6 +632,7 @@ contact = f'''
           <p class="hint">We'll confirm the exact time when we contact you.</p>
         </fieldset>
 
+        <p class="hint consent">By sending this, you agree Alert Automotive may contact you by phone, text or email about your request. Message and data rates may apply. We never sell your information — see our <a href="/privacy">privacy policy</a>.</p>
         <button class="btn" type="submit">Send appointment request</button>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
@@ -623,8 +647,7 @@ contact = f'''
         <li><span class="icon">{ICONS["mail"]}</span><div><strong>Email</strong><a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a></div></li>
         <li><span class="icon">{ICONS["clock"]}</span><div><strong>Hours</strong><table class="hours"><tr><td>Monday–Friday</td><td>8 AM – 5 PM</td></tr><tr><td>Saturday–Sunday</td><td>Closed</td></tr></table></div></li>
       </ul>
-      <iframe id="map" class="map" title="Map to Alert Automotive" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q={MAP_Q}&output=embed"></iframe>
+      {MAP_EMBED("map")}
       <p style="margin-top:1rem"><a class="btn dark" href="{DIRECTIONS}" target="_blank" rel="noopener">Get directions</a></p>
       <div class="card" id="financing" style="margin-top:2rem">
         <h3>Need financing?</h3>
@@ -661,6 +684,86 @@ notfound = '''
 </div></section>
 '''
 page("404.html", "Page not found | Alert Automotive", "Page not found.", notfound, current="")
+
+
+# ---------------- PRIVACY ----------------
+privacy = f'''
+<section class="hero small"><div class="wrap">
+  <span class="eyebrow">Privacy</span>
+  <h1>Privacy policy</h1>
+  <p class="lede">Plain-English version: we only use what you send us to help with your vehicle, and we never sell it.</p>
+</div></section>
+<section><div class="wrap prose">
+  <p class="hint">Last updated November 6, 2026</p>
+  <h2>What we collect</h2>
+  <p>When you use our appointment or fleet forms, we receive what you type: your name, phone number, email (optional on the appointment form), vehicle details, the services you need, your preferred dates and any message. We also receive basic technical information our web host records with every form (IP address, browser type and the page you came from) to block spam.</p>
+  <p>We don't use advertising trackers or analytics cookies, and this site does not set its own cookies.</p>
+  <h2>How we use it</h2>
+  <ul class="ticks">
+    <li>To respond to your request and schedule service — by phone, text or email, as you choose.</li>
+    <li>To email you a confirmation that we received your request.</li>
+  </ul>
+  <p>We don't sell, rent or share your information for marketing, and we won't add you to a mailing list.</p>
+  <h2>Who processes it for us</h2>
+  <ul class="ticks">
+    <li><strong>Netlify</strong> hosts this website and receives form submissions.</li>
+    <li><strong>Google (Gmail)</strong> delivers your request to us and sends your confirmation email.</li>
+  </ul>
+  <h2>How long we keep it</h2>
+  <p>Form submissions are automatically deleted from our website host after <strong>90 days</strong>. The copy emailed to us stays in our business email as a record of your service request. You can ask us to delete it at any time.</p>
+  <h2>Third-party content and links</h2>
+  <p>Some parts of the site load content from Google: fonts, our photo gallery (stored in Google Drive) and, only when you click "Show map," Google Maps. When your browser loads that content, Google receives your IP address and may set its own cookies under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
+  <p>Financing buttons take you to the lender's own website (Koalafi or American First Finance). Anything you enter there is handled under that lender's privacy policy, not ours. Links to Facebook, Google, Yelp and Carfax work the same way.</p>
+  <h2>Your choices</h2>
+  <p>To see, correct or delete the information you've sent us, or to stop us from contacting you, call <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a> or email <a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a>. You can reply STOP to any text from us.</p>
+  <h2>Children</h2>
+  <p>This site isn't directed to children under 13, and we don't knowingly collect their information.</p>
+  <h2>Changes</h2>
+  <p>If we change this policy, we'll update the date at the top of this page.</p>
+  <h2>Contact</h2>
+  <p>Alert Automotive · {BIZ["street"]}, {BIZ["city"]} · <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a></p>
+</div></section>
+'''
+page("privacy.html", "Privacy Policy | Alert Automotive", "How Alert Automotive in Hudson, FL handles the information you send through our website.", privacy, current="")
+
+# ---------------- ACCESSIBILITY ----------------
+access = f'''
+<section class="hero small"><div class="wrap">
+  <span class="eyebrow">Accessibility</span>
+  <h1>Accessibility statement</h1>
+  <p class="lede">We want everyone to be able to use our website and get their vehicle taken care of.</p>
+</div></section>
+<section><div class="wrap prose">
+  <h2>Our goal</h2>
+  <p>We aim to meet the <strong>Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong>. The site is built to work with screen readers, keyboard-only navigation, browser zoom and enlarged text, and it respects your device's reduced-motion setting.</p>
+  <h2>What we've done</h2>
+  <ul class="ticks">
+    <li>Text and buttons meet WCAG contrast requirements.</li>
+    <li>Every form field has a label, required fields are marked, and the forms can be completed by keyboard alone.</li>
+    <li>Images have text descriptions; decorative graphics are hidden from screen readers.</li>
+    <li>A "Skip to content" link and consistent headings make pages easy to navigate.</li>
+    <li>Links that open a new tab are announced to screen readers.</li>
+  </ul>
+  <h2>Known limitations</h2>
+  <p>Some content comes from other companies — Google Maps, our financing partners' application pages, and our Facebook, Google, Yelp and Carfax profiles — and we can't control how accessible those are. Gallery photo descriptions come from the photo's file name, so some may be brief.</p>
+  <h2>Need help or found a problem?</h2>
+  <p>If anything on this site is hard to use, please let us know and we'll help you directly — including taking your appointment request over the phone. Call <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a> (Mon–Fri 8 AM–5 PM) or email <a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a>. We'll try to respond within two business days.</p>
+</div></section>
+'''
+page("accessibility.html", "Accessibility | Alert Automotive", "Alert Automotive's commitment to an accessible website and how to get help.", access, current="")
+
+# ---------------- SEO files ----------------
+pages_for_sitemap = ["", "auto-repair", "fleet", "gallery", "contact", "privacy", "accessibility"]
+import datetime
+today = datetime.date.today().isoformat()
+(OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    "".join(f"  <url><loc>{SITE}/{p}</loc><lastmod>{today}</lastmod></url>\n" for p in pages_for_sitemap) + "</urlset>\n")
+(OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /thank-you\nSitemap: {SITE}/sitemap.xml\n")
+(OUT / "_redirects").write_text(
+    "# Send the temporary Netlify address to the real domain\n"
+    "https://alert-automotive-hudson.netlify.app/* https://alertautomotivefl.com/:splat 301!\n"
+    "# Keep build/config files private\n"
+    "/build.py /404 404!\n/README.md /404 404!\n/package.json /404 404!\n")
 
 (OUT / "assets" / "favicon.svg").write_text(LOGO.replace('aria-hidden="true"', 'xmlns="http://www.w3.org/2000/svg"'))
 print("built", sorted(p.name for p in OUT.glob("*.html")))
