@@ -493,3 +493,8 @@ h3 { font-family: var(--display); }
 #financing.section-dark + .section-dark { position: relative; }
 #financing.section-dark + .section-dark::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--checker); opacity: .45; }
 .section-dark .card h3 { color: #fff; }
+/* Desktop hero: logo above the headline, same as mobile */
+.hero-split { grid-template-columns: 1fr; gap: 1.5rem; }
+.hero-logo { order: -1; justify-self: start; max-width: 24rem; margin-bottom: 0; }
+.hero .wrap.hero-split { padding-top: clamp(1.25rem, 3vw, 2.5rem); }
+.hero h1 { max-width: none; }
