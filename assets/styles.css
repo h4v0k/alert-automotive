@@ -486,3 +486,10 @@ h3 { font-family: var(--display); }
   .hero .wrap.hero-split { padding-top: 1.25rem; }
   .hero-logo { margin-bottom: -1rem; }
 }
+
+.fin-btns .btn { flex: 1 1 15rem; }
+#visit, #financing, #map { scroll-margin-top: 6rem; }
+.hero .btn-row .btn { flex: 0 1 auto; }
+#financing.section-dark + .section-dark { position: relative; }
+#financing.section-dark + .section-dark::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--checker); opacity: .45; }
+.section-dark .card h3 { color: #fff; }

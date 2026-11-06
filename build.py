@@ -20,6 +20,9 @@ BIZ = {
     "hours": "Mon–Fri 8 AM–5 PM · Sat–Sun closed",
     "google": "https://share.google/eyMXdKkK0FIiKgoOZ",
 }
+SITE = "https://alertautomotivefl.com"
+KOALAFI = "https://qr.koalafi.com/54a4b186-d734-43bd-967f-7b90392964d5"
+AFF = "https://americanfirstfinance.com/app/?dealer=28781&loc=1&src=UA"
 MAP_Q = "9824+Ideal+Ln+Suite+103,+Hudson,+FL+34667"
 DIRECTIONS = f"https://www.google.com/maps/dir/?api=1&destination={MAP_Q}"
 
@@ -147,7 +150,7 @@ def page(filename, title, desc, body, current=None, extra_head=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="/assets/og-image.jpg">
+<meta property="og:image" content="{SITE}/assets/og-image.jpg">\n<meta property="og:url" content="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">\n<link rel="canonical" href="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">
 <meta name="theme-color" content="#111214">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,6 +182,45 @@ CTA = f'''<section class="cta-band"><div class="wrap">
   <div class="btn-row"><a class="btn" href="/contact#schedule">Request an Appointment</a><a class="btn dark" href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a></div>
 </div></section>'''
 
+FIN_BUTTONS = f'''<div class="btn-row fin-btns">
+  <a class="btn" href="{KOALAFI}" target="_blank" rel="noopener">Apply with Koalafi</a>
+  <a class="btn" href="{AFF}" target="_blank" rel="noopener">Apply with American First Finance</a>
+</div>'''
+
+FINANCING = f'''<section id="financing" class="section-dark"><div class="wrap">
+  <div class="grid two">
+    <div>
+      <span class="kicker">Pay over time</span>
+      <h2>Financing options</h2>
+      <p>Don't put off the repair you need. Apply online in minutes — no need to wait until you're at the shop.</p>
+      {FIN_BUTTONS}
+      <p class="hint" style="color:#b9bec5;margin-top:1rem">Applying takes you to the lender's secure site. Approval and terms are set by the lender.</p>
+    </div>
+    <div class="card">
+      <h3>Synchrony Car Care™</h3>
+      <p>6 months promotional financing on purchases of $199 or more with the Synchrony Car Care™ credit card. Ask us about applying in the shop.</p>
+      <p class="hint">Subject to credit approval. Minimum monthly payments required. See store for details.</p>
+    </div>
+  </div>
+</div></section>'''
+
+VISIT = f'''<section id="visit"><div class="wrap">
+  <div class="grid two">
+    <div>
+      <span class="kicker">Come see us</span>
+      <h2>Find the shop</h2>
+      <ul class="info-list" style="margin-bottom:1.6rem">
+        <li><span class="icon">{ICONS["pin"]}</span><div><strong>Address</strong><a href="{DIRECTIONS}" target="_blank" rel="noopener">{BIZ["street"]}<br>{BIZ["city"]}</a></div></li>
+        <li><span class="icon">{ICONS["clock"]}</span><div><strong>Hours</strong><table class="hours"><tr><td>Monday–Friday</td><td>8 AM – 5 PM</td></tr><tr><td>Saturday–Sunday</td><td>Closed</td></tr></table></div></li>
+        <li><span class="icon">{ICONS["phone"]}</span><div><strong>Phone</strong><a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a></div></li>
+      </ul>
+      <a class="btn" href="{DIRECTIONS}" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <iframe class="map" title="Map to Alert Automotive" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q={MAP_Q}&output=embed"></iframe>
+  </div>
+</div></section>'''
+
 # ---------------- HOME ----------------
 home = f'''
 <section class="hero"><div class="wrap hero-split">
@@ -189,6 +231,8 @@ home = f'''
   <div class="btn-row">
     <a class="btn" href="/contact#schedule">Request an Appointment</a>
     <a class="btn ghost" href="tel:{BIZ["tel"]}">Call {BIZ["phone"]}</a>
+    <a class="btn ghost" href="#visit">Directions &amp; map</a>
+    <a class="btn ghost" href="#financing">Financing</a>
   </div>
   <ul class="trust">
     <li>5.0★ on Google · 160+ reviews</li>
@@ -250,9 +294,11 @@ home = f'''
   <div class="promo-grid">
     <div class="promo"><span class="big">Free 2nd opinion</span><p>Got an estimate somewhere else? Bring it in and get a free second opinion from our certified shop.</p><a class="btn dark" href="/contact#schedule">Get a second opinion</a></div>
     <div class="promo"><span class="big">24 mo / 24K mi</span><p>Our repairs are backed by a 24-month / 24,000-mile warranty. We stand behind our work.</p></div>
-    <div class="promo"><span class="big">6 months financing</span><p>Promotional financing on purchases of $199 or more with the Synchrony Car Care™ credit card.</p><small>Subject to credit approval. Minimum monthly payments required. See store for details.</small></div>
+    <div class="promo"><span class="big">Financing</span><p>Apply online with Koalafi or American First Finance, or ask about Synchrony Car Care™ 6-month promotional financing.</p><a class="btn dark" href="#financing">See financing options</a></div>
   </div>
 </div></section>
+
+{FINANCING}
 
 <section class="section-dark"><div class="wrap">
   <div class="grid two">
@@ -292,6 +338,8 @@ home = f'''
   </div>
   <div class="gallery-grid" data-gallery data-limit="6"></div>
 </div></section>
+
+{VISIT}
 
 {CTA}
 '''
@@ -385,7 +433,7 @@ repair = f'''
   <div class="promo-grid" style="color:var(--ink)">
     <div class="promo"><span class="big">Free 2nd opinion</span><p>Received an estimate elsewhere? Bring it in for a free second opinion.</p></div>
     <div class="promo"><span class="big">24 mo / 24K mi</span><p>Warranty on our repairs.</p></div>
-    <div class="promo"><span class="big">Financing</span><p>6 months promotional financing on $199+ with the Synchrony Car Care™ credit card.</p><small>Subject to credit approval. Minimum monthly payments required. See store for details.</small></div>
+    <div class="promo"><span class="big">Financing</span><p>Apply online in minutes, or ask about Synchrony Car Care™ 6-month promotional financing.</p><div class="btn-row"><a class="btn" href="{KOALAFI}" target="_blank" rel="noopener">Koalafi</a><a class="btn" href="{AFF}" target="_blank" rel="noopener">American First Finance</a></div></div>
   </div>
 </div></section>
 
@@ -504,6 +552,7 @@ contact = f'''
   <span class="eyebrow">Contact &amp; scheduling</span>
   <h1>Request an appointment</h1>
   <p class="lede">Tell us about your vehicle and pick a preferred time. We'll call or text to confirm — usually the same business day.</p>
+  <div class="btn-row"><a class="btn ghost" href="#map">Directions &amp; map</a><a class="btn ghost" href="#financing">Apply for financing</a></div>
 </div></section>
 
 <section id="schedule"><div class="wrap">
@@ -574,9 +623,15 @@ contact = f'''
         <li><span class="icon">{ICONS["mail"]}</span><div><strong>Email</strong><a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a></div></li>
         <li><span class="icon">{ICONS["clock"]}</span><div><strong>Hours</strong><table class="hours"><tr><td>Monday–Friday</td><td>8 AM – 5 PM</td></tr><tr><td>Saturday–Sunday</td><td>Closed</td></tr></table></div></li>
       </ul>
-      <iframe class="map" title="Map to Alert Automotive" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      <iframe id="map" class="map" title="Map to Alert Automotive" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps?q={MAP_Q}&output=embed"></iframe>
       <p style="margin-top:1rem"><a class="btn dark" href="{DIRECTIONS}" target="_blank" rel="noopener">Get directions</a></p>
+      <div class="card" id="financing" style="margin-top:2rem">
+        <h3>Need financing?</h3>
+        <p>Apply online before your appointment — it only takes a few minutes.</p>
+        {FIN_BUTTONS}
+        <p class="hint">Also ask about Synchrony Car Care™ 6-month promotional financing on $199+. Subject to credit approval.</p>
+      </div>
     </aside>
   </div>
 </div></section>
