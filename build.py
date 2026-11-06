@@ -164,7 +164,7 @@ def page(filename, title, desc, body, current=None, extra_head=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="{SITE}/assets/og-image.jpg">\n<meta property="og:url" content="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">\n<link rel="canonical" href="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">
+<meta property="og:image" content="{SITE}/assets/og-image.jpg">\n<meta property="og:image:secure_url" content="{SITE}/assets/og-image.jpg">\n<meta property="og:image:type" content="image/jpeg">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="Alert Automotive, Hudson FL">\n<meta name="twitter:card" content="summary_large_image">\n<meta property="og:url" content="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">\n<link rel="canonical" href="{SITE}{"/" if filename=="index.html" else "/"+filename.replace(".html","")}">
 <meta name="theme-color" content="#2b2e33">{'<meta name="robots" content="noindex">' if filename in ("thank-you.html","404.html") else ""}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
