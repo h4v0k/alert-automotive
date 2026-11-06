@@ -531,3 +531,4 @@ iframe.map { display: block; }
 .review a { color: inherit; }
 .btn.ghost-dark { background: transparent; color: var(--ink) !important; border: 2px solid var(--ink); }
 .btn.ghost-dark:hover { background: rgba(0,0,0,.05); }
+
