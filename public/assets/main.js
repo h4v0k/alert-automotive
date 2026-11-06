@@ -87,6 +87,32 @@
     });
   });
 
+  // Google reviews — fetched by the Worker (/api/reviews), cached 12 h. Section stays hidden if unavailable.
+  const rv = document.querySelector("[data-reviews]");
+  if (rv) {
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const stars = (n) => "★".repeat(Math.round(n)) + "☆".repeat(5 - Math.round(n));
+    const safeUrl = (u) => (/^https:\/\//.test(u || "") ? u : "");
+    fetch("/api/reviews")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d || !d.reviews || !d.reviews.length) return;
+        rv.querySelector("[data-reviews-summary]").innerHTML =
+          `<span class="stars" aria-hidden="true">${stars(d.rating)}</span> ${esc(d.rating.toFixed(1))} out of 5 · ${esc(d.count)} Google reviews`;
+        rv.querySelector("[data-reviews-list]").innerHTML = d.reviews.slice(0, 3).map((r) => {
+          const text = r.text.length > 320 ? r.text.slice(0, 300).replace(/\s+\S*$/, "") + "…" : r.text;
+          const author = safeUrl(r.authorUrl) ? `<a href="${esc(r.authorUrl)}" target="_blank" rel="noopener">${esc(r.author)}</a>` : esc(r.author);
+          const photo = safeUrl(r.photo) ? `<img src="${esc(r.photo)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : "";
+          return `<article class="review"><div class="stars" aria-label="${esc(r.rating)} out of 5 stars">${stars(r.rating)}</div>` +
+            `<blockquote>${esc(text)}</blockquote><footer>${photo}<span>${author}<small>${esc(r.when)} on Google</small></span></footer></article>`;
+        }).join("");
+        if (safeUrl(d.url)) rv.querySelector("[data-reviews-all]").href = d.url;
+        if (safeUrl(d.writeUrl)) rv.querySelector("[data-reviews-write]").href = d.writeUrl;
+        rv.hidden = false;
+      })
+      .catch(() => {});
+  }
+
   // Gallery — photos load from the shop Google Drive folder (assets/config.js)
   const grids = document.querySelectorAll("[data-gallery]");
   if (!grids.length) return;

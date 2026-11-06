@@ -213,9 +213,78 @@ async function handleSubmit(request, env) {
   }
 }
 
+// ---------- Google reviews ----------
+// GET /api/reviews → { rating, count, url, writeUrl, reviews: [{ author, authorUrl, photo, rating, text, when }] }
+// Uses Places API (New). Secret GOOGLE_PLACES_KEY (a server key restricted to "Places API (New)").
+// Optional var PLACE_ID; if unset, the shop is looked up by name + address once and cached.
+// Responses are cached at the edge for 12 hours (~60 Google calls/month), so this stays within the free tier.
+const PLACES = "https://places.googleapis.com/v1";
+const REVIEWS_TTL = 12 * 60 * 60;
+const SHOP_QUERY = "Alert Automotive, 9824 Ideal Ln, Suite 103, Hudson, FL 34667";
+
+async function findPlaceId(key) {
+  const cache = caches.default;
+  const ck = new Request("https://cache.internal/place-id");
+  const hit = await cache.match(ck);
+  if (hit) return hit.text();
+  const res = await fetch(`${PLACES}/places:searchText`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Goog-Api-Key": key, "X-Goog-FieldMask": "places.id,places.displayName" },
+    body: JSON.stringify({ textQuery: SHOP_QUERY }),
+  });
+  if (!res.ok) throw new Error(`searchText ${res.status}: ${await res.text()}`);
+  const id = (await res.json()).places?.[0]?.id;
+  if (!id) throw new Error("shop not found on Google");
+  await cache.put(ck, new Response(id, { headers: { "Cache-Control": "max-age=2592000" } }));
+  return id;
+}
+
+async function handleReviews(request, env, ctx) {
+  const key = env.GOOGLE_PLACES_KEY;
+  if (!key) return Response.json({ error: "not configured" }, { status: 404 });
+  const cache = caches.default;
+  const ck = new Request("https://cache.internal/reviews-v1");
+  const hit = await cache.match(ck);
+  if (hit) return hit;
+  try {
+    const placeId = env.PLACE_ID || (await findPlaceId(key));
+    const res = await fetch(`${PLACES}/places/${placeId}`, {
+      headers: { "X-Goog-Api-Key": key, "X-Goog-FieldMask": "rating,userRatingCount,reviews,googleMapsUri" },
+    });
+    if (!res.ok) throw new Error(`place details ${res.status}: ${await res.text()}`);
+    const p = await res.json();
+    const body = {
+      rating: p.rating || 0,
+      count: p.userRatingCount || 0,
+      url: p.googleMapsUri || "",
+      writeUrl: `https://search.google.com/local/writereview?placeid=${encodeURIComponent(placeId)}`,
+      reviews: (p.reviews || [])
+        .map((r) => ({
+          author: r.authorAttribution?.displayName || "Google user",
+          authorUrl: r.authorAttribution?.uri || "",
+          photo: r.authorAttribution?.photoUri || "",
+          rating: r.rating || 0,
+          text: (r.text?.text || r.originalText?.text || "").trim(),
+          when: r.relativePublishTimeDescription || "",
+        }))
+        .filter((r) => r.text),
+    };
+    const out = Response.json(body, { headers: { "Cache-Control": `public, max-age=${REVIEWS_TTL}` } });
+    ctx.waitUntil(cache.put(ck, out.clone()));
+    return out;
+  } catch (err) {
+    console.error("Reviews fetch failed:", err.message);
+    return Response.json({ error: "unavailable" }, { status: 502, headers: { "Cache-Control": "no-store" } });
+  }
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    if (url.pathname === "/api/reviews") {
+      if (request.method !== "GET") return new Response("method not allowed", { status: 405, headers: { Allow: "GET" } });
+      return handleReviews(request, env, ctx);
+    }
     if (url.pathname === "/api/submit") {
       if (request.method !== "POST") return new Response("method not allowed", { status: 405, headers: { Allow: "POST" } });
       return handleSubmit(request, env);

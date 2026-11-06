@@ -321,6 +321,19 @@ home = f'''
 
 {FINANCING}
 
+<section class="reviews" data-reviews hidden><div class="wrap">
+  <div class="section-head">
+    <span class="kicker">Reviews from Google</span>
+    <h2>What our customers say</h2>
+    <p class="reviews-summary" data-reviews-summary></p>
+  </div>
+  <div class="grid" data-reviews-list></div>
+  <div class="btn-row" style="margin-top:2rem">
+    <a class="btn dark" data-reviews-all href="{BIZ["google"]}" target="_blank" rel="noopener">Read all reviews on Google</a>
+    <a class="btn ghost-dark" data-reviews-write href="{BIZ["google"]}" target="_blank" rel="noopener">Leave us a review</a>
+  </div>
+</div></section>
+
 <section class="section-dark"><div class="wrap">
   <div class="grid two">
     <div>
