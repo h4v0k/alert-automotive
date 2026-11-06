@@ -25,6 +25,7 @@ BIZ = {
 SITE = "https://alertautomotivefl.com"
 KOALAFI = "https://qr.koalafi.com/54a4b186-d734-43bd-967f-7b90392964d5"
 AFF = "https://americanfirstfinance.com/app/?dealer=28781&loc=1&src=UA"
+SYNCHRONY = "https://www.synchrony.com/mmc/NT218263607?sitecode=acewel402"
 MAP_Q = "9824+Ideal+Ln+Suite+103,+Hudson,+FL+34667"
 DIRECTIONS = f"https://www.google.com/maps/dir/?api=1&destination=Alert+Automotive,+{MAP_Q}"
 
@@ -207,6 +208,7 @@ def MAP_EMBED(id_=""):
 FIN_BUTTONS = f'''<div class="btn-row fin-btns">
   <a class="btn" href="{KOALAFI}" target="_blank" rel="noopener">Apply with Koalafi</a>
   <a class="btn" href="{AFF}" target="_blank" rel="noopener">Apply with American First Finance</a>
+  <a class="btn" href="{SYNCHRONY}" target="_blank" rel="noopener">Apply with Synchrony</a>
 </div>'''
 
 FINANCING = f'''<section id="financing" class="section-dark"><div class="wrap">
@@ -220,7 +222,8 @@ FINANCING = f'''<section id="financing" class="section-dark"><div class="wrap">
     </div>
     <div class="card">
       <h3>Synchrony Car Care™</h3>
-      <p>6 months promotional financing on purchases of $199 or more with the Synchrony Car Care™ credit card. Ask us about applying in the shop.</p>
+      <p>6 months promotional financing on purchases of $199 or more with the Synchrony Car Care™ credit card. See if you prequalify online in seconds, with no impact to your credit score.</p>
+      <a class="btn" href="{SYNCHRONY}" target="_blank" rel="noopener">Apply with Synchrony</a>
       <p class="hint">Subject to credit approval. Minimum monthly payments required. See store for details.</p>
     </div>
   </div>
@@ -315,7 +318,7 @@ home = f'''
   <div class="promo-grid">
     <div class="promo"><span class="big">Free 2nd opinion</span><p>Got an estimate somewhere else? Bring it in and get a free second opinion from our certified shop.</p><a class="btn dark" href="/contact#schedule">Get a second opinion</a></div>
     <div class="promo"><span class="big">24 mo / 24K mi</span><p>Our repairs are backed by a 24-month / 24,000-mile warranty. We stand behind our work.</p></div>
-    <div class="promo"><span class="big">Financing</span><p>Apply online with Koalafi or American First Finance, or ask about Synchrony Car Care™ 6-month promotional financing.</p><a class="btn dark" href="#financing">See financing options</a></div>
+    <div class="promo"><span class="big">Financing</span><p>Apply online with Synchrony Car Care™ (6-month promotional financing on $199+), Koalafi or American First Finance.</p><a class="btn dark" href="#financing">See financing options</a></div>
   </div>
 </div></section>
 
@@ -467,7 +470,7 @@ repair = f'''
   <div class="promo-grid" style="color:var(--ink)">
     <div class="promo"><span class="big">Free 2nd opinion</span><p>Received an estimate elsewhere? Bring it in for a free second opinion.</p></div>
     <div class="promo"><span class="big">24 mo / 24K mi</span><p>Warranty on our repairs.</p></div>
-    <div class="promo"><span class="big">Financing</span><p>Apply online in minutes, or ask about Synchrony Car Care™ 6-month promotional financing.</p><div class="btn-row"><a class="btn" href="{KOALAFI}" target="_blank" rel="noopener">Koalafi</a><a class="btn" href="{AFF}" target="_blank" rel="noopener">American First Finance</a></div></div>
+    <div class="promo"><span class="big">Financing</span><p>Apply online in minutes, including Synchrony Car Care™ 6-month promotional financing on $199+.</p><div class="btn-row"><a class="btn" href="{SYNCHRONY}" target="_blank" rel="noopener">Synchrony</a><a class="btn" href="{KOALAFI}" target="_blank" rel="noopener">Koalafi</a><a class="btn" href="{AFF}" target="_blank" rel="noopener">American First Finance</a></div></div>
   </div>
 </div></section>
 
@@ -666,7 +669,7 @@ contact = f'''
         <h3>Need financing?</h3>
         <p>Apply online before your appointment — it only takes a few minutes.</p>
         {FIN_BUTTONS}
-        <p class="hint">Also ask about Synchrony Car Care™ 6-month promotional financing on $199+. Subject to credit approval.</p>
+        <p class="hint">Synchrony Car Care™: 6-month promotional financing on $199+. Subject to credit approval.</p>
       </div>
     </aside>
   </div>
@@ -726,7 +729,7 @@ privacy = f'''
   <p>Our website host doesn't keep form submissions. The copy emailed to us stays in our business email as a record of your service request. You can ask us to delete it at any time.</p>
   <h2>Third-party content and links</h2>
   <p>Some parts of the site load content from Google: fonts, our photo gallery (stored in Google Drive) and, only when you click "Show map," Google Maps. When your browser loads that content, Google receives your IP address and may set its own cookies under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
-  <p>Financing buttons take you to the lender's own website (Koalafi or American First Finance). Anything you enter there is handled under that lender's privacy policy, not ours. Links to Facebook, Google, Yelp and Carfax work the same way.</p>
+  <p>Financing buttons take you to the lender's own website (Synchrony, Koalafi or American First Finance). Anything you enter there is handled under that lender's privacy policy, not ours. Links to Facebook, Google, Yelp and Carfax work the same way.</p>
   <h2>Your choices</h2>
   <p>To see, correct or delete the information you've sent us, or to stop us from contacting you, call <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a> or email <a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a>. You can reply STOP to any text from us.</p>
   <h2>Children</h2>
