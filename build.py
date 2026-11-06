@@ -511,7 +511,7 @@ fleet = f'''
       </ul>
     </div>
     <div class="form-card" id="fleet-form" style="color:var(--ink)">
-      <form name="fleet-inquiry" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" data-ajax>
+      <form name="fleet-inquiry" method="POST" action="/api/submit" data-ajax>
         <input type="hidden" name="form-name" value="fleet-inquiry">
         <input type="hidden" name="subject" value="New fleet inquiry — Alert Automotive website">
         <p class="hidden-field"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -582,7 +582,7 @@ contact = f'''
     <div class="form-card">
       <p class="hint" style="margin-top:0">Fields marked <span class="req" aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.</p>
       <div class="form-note"><strong>This is a request, not a confirmed booking.</strong> Have an estimate from another shop? Choose "Free second opinion" below. We'll reach out to confirm your time. Need it today? Call <a href="tel:{BIZ["tel"]}">{BIZ["phone"]}</a>.</div>
-      <form name="appointment-request" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" data-ajax>
+      <form name="appointment-request" method="POST" action="/api/submit" data-ajax>
         <input type="hidden" name="form-name" value="appointment-request">
         <input type="hidden" name="subject" value="New appointment request — Alert Automotive website">
         <p class="hidden-field"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -706,11 +706,11 @@ privacy = f'''
   <p>We don't sell, rent or share your information for marketing, and we won't add you to a mailing list.</p>
   <h2>Who processes it for us</h2>
   <ul class="ticks">
-    <li><strong>Netlify</strong> hosts this website and receives form submissions.</li>
+    <li><strong>Cloudflare</strong> hosts this website and passes form submissions straight to our email. It doesn't store them.</li>
     <li><strong>Google (Gmail)</strong> delivers your request to us and sends your confirmation email.</li>
   </ul>
   <h2>How long we keep it</h2>
-  <p>Form submissions are automatically deleted from our website host after <strong>90 days</strong>. The copy emailed to us stays in our business email as a record of your service request. You can ask us to delete it at any time.</p>
+  <p>Our website host doesn't keep form submissions. The copy emailed to us stays in our business email as a record of your service request. You can ask us to delete it at any time.</p>
   <h2>Third-party content and links</h2>
   <p>Some parts of the site load content from Google: fonts, our photo gallery (stored in Google Drive) and, only when you click "Show map," Google Maps. When your browser loads that content, Google receives your IP address and may set its own cookies under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
   <p>Financing buttons take you to the lender's own website (Koalafi or American First Finance). Anything you enter there is handled under that lender's privacy policy, not ours. Links to Facebook, Google, Yelp and Carfax work the same way.</p>
@@ -759,11 +759,5 @@ today = datetime.date.today().isoformat()
 (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     "".join(f"  <url><loc>{SITE}/{p}</loc><lastmod>{today}</lastmod></url>\n" for p in pages_for_sitemap) + "</urlset>\n")
 (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /thank-you\nSitemap: {SITE}/sitemap.xml\n")
-(OUT / "_redirects").write_text(
-    "# Send the temporary Netlify address to the real domain\n"
-    "https://alert-automotive-hudson.netlify.app/* https://alertautomotivefl.com/:splat 301!\n"
-    "# Keep build/config files private\n"
-    "/build.py /404 404!\n/README.md /404 404!\n/package.json /404 404!\n")
-
 (OUT / "assets" / "favicon.svg").write_text(LOGO.replace('aria-hidden="true"', 'xmlns="http://www.w3.org/2000/svg"'))
 print("built", sorted(p.name for p in OUT.glob("*.html")))

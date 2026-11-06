@@ -1,0 +1,11 @@
+# Keep source and config files off the public site
+.git
+.gitignore
+.assetsignore
+build.py
+README.md
+wrangler.jsonc
+src
+__pycache__
+.DS_Store
+node_modules

@@ -49,7 +49,7 @@
   const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   document.querySelectorAll("[data-min-today]").forEach((el) => (el.min = today));
 
-  // AJAX form submit to Netlify Forms (falls back to normal POST without JS)
+  // AJAX form submit to the Worker at /api/submit (falls back to normal POST without JS)
   document.querySelectorAll("form[data-ajax]").forEach((form) => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -71,7 +71,7 @@
       status.className = "form-status";
       status.textContent = "";
       try {
-        const res = await fetch("/", {
+        const res = await fetch("/api/submit", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: params.toString(),

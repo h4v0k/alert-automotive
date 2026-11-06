@@ -1,6 +1,0 @@
-# Send the temporary Netlify address to the real domain
-https://alert-automotive-hudson.netlify.app/* https://alertautomotivefl.com/:splat 301!
-# Keep build/config files private
-/build.py /404 404!
-/README.md /404 404!
-/package.json /404 404!
