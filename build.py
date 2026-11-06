@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Generates the Alert Automotive static pages into ../alert-automotive/."""
+"""Generates the Alert Automotive static pages into ./public/."""
 from pathlib import Path
 import hashlib
 
-OUT = Path(__file__).resolve().parent
+OUT = Path(__file__).resolve().parent / "public"
 
 def v(rel):
     """Cache-busting version from file contents."""
