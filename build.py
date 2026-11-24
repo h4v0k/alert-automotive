@@ -2,6 +2,7 @@
 """Generates the Alert Automotive static pages into ./public/."""
 from pathlib import Path
 import hashlib
+import json
 
 OUT = Path(__file__).resolve().parent / "public"
 
@@ -138,19 +139,30 @@ def footer():
 <script src="/assets/main.js?v={v("assets/main.js")}" defer></script>'''
 
 
-SCHEMA = f'''<script type="application/ld+json">{{
-  "@context": "https://schema.org", "@type": "AutoRepair", "@id": "{SITE}/#business",
-  "name": "Alert Automotive", "url": "{SITE}/", "logo": "{SITE}/assets/logo-footer.webp", "image": "{SITE}/assets/og-image.jpg",
-  "telephone": "+1-352-515-3660", "email": "{BIZ["email"]}",
-  "description": "Family-owned auto repair in Hudson, FL: transmissions, engine, brakes, tires, A/C, electrical, classic cars, fleets and small engines.",
-  "address": {{"@type": "PostalAddress", "streetAddress": "9824 Ideal Ln Suite 103",
-    "addressLocality": "Hudson", "addressRegion": "FL", "postalCode": "34667", "addressCountry": "US"}},
-  "openingHoursSpecification": [{{"@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00"}}],
-  "sameAs": ["{BIZ["fb"]}", "{BIZ["yelp"]}", "{BIZ["carfax"]}"],
-  "areaServed": ["Hudson, FL", "Spring Hill, FL", "Port Richey, FL", "Pasco County, FL", "Hernando County, FL"],
-  "paymentAccepted": "Cash, Credit Card, Financing", "slogan": "Making Vehicles Run Great Again"
-}}</script>'''
+_SERVICES = ["Transmission service and repair", "Engine repair", "Brakes and safety inspections",
+    "Tire sales and installation", "Oil changes and maintenance", "A/C and heating repair",
+    "Electrical diagnostics", "Check-engine light diagnostics", "Classic and custom car repair",
+    "Fleet vehicle maintenance", "Small engine repair", "Free second opinions"]
+SCHEMA = '<script type="application/ld+json">' + json.dumps({
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "AutoRepair", "@id": f"{SITE}/#business",
+     "name": "Alert Automotive", "url": f"{SITE}/", "logo": f"{SITE}/assets/logo-footer.webp", "image": f"{SITE}/assets/og-image.jpg",
+     "telephone": "+1-352-515-3660", "email": BIZ["email"],
+     "description": "Family-owned auto repair in Hudson, FL: transmissions, engine, brakes, tires, A/C, electrical, classic cars, fleets and small engines.",
+     "address": {"@type": "PostalAddress", "streetAddress": "9824 Ideal Ln Suite 103",
+       "addressLocality": "Hudson", "addressRegion": "FL", "postalCode": "34667", "addressCountry": "US"},
+     "hasMap": f"https://www.google.com/maps?q=Alert+Automotive,+{MAP_Q}",
+     "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
+       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00"}],
+     "sameAs": [BIZ["fb"], BIZ["yelp"], BIZ["carfax"]],
+     "areaServed": ["Hudson, FL", "Spring Hill, FL", "Port Richey, FL", "Pasco County, FL", "Hernando County, FL"],
+     "paymentAccepted": "Cash, Credit Card, Financing", "slogan": "Making Vehicles Run Great Again",
+     "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Auto repair services",
+       "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": n}} for n in _SERVICES]}},
+    {"@type": "WebSite", "@id": f"{SITE}/#website", "url": f"{SITE}/", "name": "Alert Automotive",
+     "publisher": {"@id": f"{SITE}/#business"}},
+  ]}, ensure_ascii=False) + '</script>'
 
 
 def page(filename, title, desc, body, current=None, extra_head=""):
